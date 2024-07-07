@@ -145,7 +145,7 @@ async function createSvgPngPreview (rel: ISlideRelMedia): Promise<string> {
 				rel.data = canvas.toDataURL(rel.type)
 				resolve('done')
 			} catch (ex) {
-				image.onerror(ex)
+				image.onerror(ex as string)
 			}
 			canvas = null
 		}

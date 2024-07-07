@@ -559,15 +559,15 @@ export function genTableToSlides (pptx: PptxGenJS, tabEleId: string, options: Ta
 	// STEP 2: Grab table col widths - just find the first availble row, either thead/tbody/tfoot, others may have colspans, who cares, we only need col widths from 1
 	let firstRowCells = document.querySelectorAll(`#${tabEleId} tr:first-child th`)
 	if (firstRowCells.length === 0) firstRowCells = document.querySelectorAll(`#${tabEleId} tr:first-child td`)
-	firstRowCells.forEach((cell: HTMLElement) => {
-		if (cell.getAttribute('colspan')) {
+	firstRowCells.forEach((cell) => {
+		if ((cell as HTMLElement).getAttribute('colspan')) {
 			// Guesstimate (divide evenly) col widths
 			// NOTE: both j$query and vanilla selectors return {0} when table is not visible)
 			for (let idxc = 0; idxc < Number(cell.getAttribute('colspan')); idxc++) {
-				arrTabColW.push(Math.round(cell.offsetWidth / Number(cell.getAttribute('colspan'))))
+				arrTabColW.push(Math.round((cell as HTMLElement).offsetWidth / Number(cell.getAttribute('colspan'))))
 			}
 		} else {
-			arrTabColW.push(cell.offsetWidth)
+			arrTabColW.push((cell as HTMLElement).offsetWidth)
 		}
 	})
 	arrTabColW.forEach(colW => {
@@ -593,9 +593,9 @@ export function genTableToSlides (pptx: PptxGenJS, tabEleId: string, options: Ta
 	// NOTE: We create 3 arrays instead of one so we can loop over body then show header/footer rows on first and last page
 	const tableParts = ['thead', 'tbody', 'tfoot']
 	tableParts.forEach(part => {
-		document.querySelectorAll(`#${tabEleId} ${part} tr`).forEach((row: HTMLTableRowElement) => {
+		document.querySelectorAll(`#${tabEleId} ${part} tr`).forEach((row) => {
 			const arrObjTabCells: TableCell[] = []
-			Array.from(row.cells).forEach(cell => {
+			Array.from((row as HTMLTableRowElement).cells).forEach(cell => {
 				// A: Get RGB text/bkgd colors
 				const arrRGB1 = window.getComputedStyle(cell).getPropertyValue('color').replace(/\s+/gi, '').replace('rgba(', '').replace('rgb(', '').replace(')', '').split(',')
 				let arrRGB2 = window
