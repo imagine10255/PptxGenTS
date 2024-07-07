@@ -1,6 +1,6 @@
 {
-  "name": "pptxgents",
-  "version": "3.13.0-beta.4",
+  "name": "@imagine10255/pptxgents",
+  "version": "3.13.0-beta.6",
   "author": {
     "name": "Brent Ely",
     "url": "https://github.com/gitbrent/"
@@ -11,15 +11,9 @@
   "engines": {
     "node": ">=14"
   },
-  "type": "module",
+  "main": "./dist/pptxgen.cjs.js",
   "module": "./dist/pptxgen.es.js",
   "types": "./dist/pptxgen.d.ts",
-  "exports": {
-    ".": {
-      "browser": "./dist/pptxgen.cjs.js",
-      "import": "./dist/pptxgen.es.js"
-    }
-  },
   "files": [
     "dist"
   ],
@@ -30,14 +24,6 @@
     "prepublishOnly": "run-s build",
     "build": "run-s build:claer && tsc && vite build",
     "doctoc": "./node_modules/doctoc/doctoc.js README.md"
-  },
-  "browser": {
-    "express": false,
-    "fs": false,
-    "https": false,
-    "image-size": false,
-    "os": false,
-    "path": false
   },
   "dependencies": {
     "https": "^1.0.0",
