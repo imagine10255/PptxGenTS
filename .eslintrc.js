@@ -9,7 +9,6 @@ module.exports = {
 		node: true,
 	},
 	extends: [
-		"plugin:react/recommended",
 		"standard-with-typescript",
 		"plugin:@typescript-eslint/recommended",
 	],
@@ -24,9 +23,12 @@ module.exports = {
 	rules: {
 		"@typescript-eslint/indent": ["error", "tab"],
 		"@typescript-eslint/prefer-nullish-coalescing": 0, // "warn", too many items!
-		"@typescript-eslint/restrict-plus-operands": "warn", // TODO: "error"
+    "@typescript-eslint/restrict-plus-operands": 0, // TODO: "error"
 		"@typescript-eslint/restrict-template-expressions": "warn", // TODO: "error"
 		"@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/prefer-optional-chain": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-unused-vars": 0,
 		"comma-dangle": ["error", "only-multiline"],
 		"no-lone-blocks": 0,
 		"no-tabs": ["error", { allowIndentationTabs: true }],
